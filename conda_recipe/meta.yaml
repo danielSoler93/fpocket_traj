@@ -1,0 +1,34 @@
+package:
+  name: fpocket_traj
+  version: "1.0.0"
+
+about:
+  home: https://github.com/danielSoler93/fpocket_traj
+  license: Apache
+  license_file: LICENSE
+  summary: Python patch to run fpocket along a trajectory for a single pocket
+
+source:
+  path: ../
+
+build:
+  script: python -m pip install . --no-deps -vv
+  number: 0
+
+requirements:
+  host:
+    - python 3
+
+  run:
+    # Base dependencies
+    - python 3
+    - tqdm
+    - rdkit
+
+test:
+  imports:
+    - fpocket_traj
+  source_files:
+    - tests
+  requires:
+    - pytest

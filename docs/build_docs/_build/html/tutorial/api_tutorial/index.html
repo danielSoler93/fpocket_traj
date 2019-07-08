@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>From python API &mdash; analogs finder 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="From Command Line" href="../command_line_tutorial/index.html" />
+    <link rel="prev" title="Getting Started" href="../index.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> analogs finder
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">From python API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download-examples">Download examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-your-query-molecule-and-your-database">Load your query molecule and your database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyze-your-dataset">Analyze your dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#most-similars-n-molecules">Most Similars n Molecules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tanimoto-similarity-search">Tanimoto Similarity Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#substructure-search">Substructure Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combinatorial-substructure-search">Combinatorial Substructure Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#similarity-and-substructure-hybrid-search">Similarity and Substructure hybrid search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-different-fingerprints">Use different fingerprints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-all-four-fingerprints-to-query-one-database-with-different-tresholds">Use all four fingerprints to query one database with different tresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#turbo-search-method">Turbo search method:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../command_line_tutorial/index.html">From Command Line</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog/index.html">ChangeLog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">analogs finder</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+      <li>From python API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tutorial/api_tutorial/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="from-python-api">
+<h1>From python API<a class="headerlink" href="#from-python-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="download-examples">
+<h2>Download examples<a class="headerlink" href="#download-examples" title="Permalink to this headline">¶</a></h2>
+<p>From command line: git clone <a class="reference external" href="https://github.com/NostrumBioDiscovery/analogs_finder.git">https://github.com/NostrumBioDiscovery/analogs_finder.git</a></p>
+</div>
+<div class="section" id="load-your-query-molecule-and-your-database">
+<h2>Load your query molecule and your database<a class="headerlink" href="#load-your-query-molecule-and-your-database" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rdkit</span> <span class="k">import</span> <span class="n">Chem</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;analogs_finder/examples/database.sdf&quot;</span>
+<span class="n">qmolecule</span> <span class="o">=</span> <span class="s2">&quot;analogs_finder/examples/substructre_1.sdf&quot;</span>
+
+<span class="n">molecules_db</span><span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="n">molecule_query</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">qmolecule</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="analyze-your-dataset">
+<h2>Analyze your dataset<a class="headerlink" href="#analyze-your-dataset" title="Permalink to this headline">¶</a></h2>
+<p>The command below will output the tanimoto similarity distribution among
+all dataset and all fingerprints, at the same time will show a plot
+of the two first components of the PCA over the fingerprint space coloured
+by similarity to your query molecule. If we hover the points of the plot
+we can inspect the different structures of the molecules.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analogs_finder.analysis</span> <span class="k">import</span> <span class="n">analysis_dataset</span> <span class="k">as</span> <span class="n">an</span>
+
+
+<span class="c1">#Use Uniform manifold to plot the chemical space</span>
+<span class="n">an</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">dim_type</span><span class="o">=</span><span class="s2">&quot;umap&quot;</span><span class="p">)</span>
+
+<span class="c1">#Use PCA to plot the chemical space</span>
+<span class="n">an</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">dim_type</span><span class="o">=</span><span class="s2">&quot;pca&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We find the similarity_hist_DL.png:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/fp_dist.png"><img alt="../../_images/fp_dist.png" src="../../_images/fp_dist.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+<p>And a firefox window opens retrieving and interactive plot:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/chemical_space.png"><img alt="../../_images/chemical_space.png" src="../../_images/chemical_space.png" style="width: 598.4px; height: 383.2px;" /></a>
+</div>
+</div>
+<div class="section" id="most-similars-n-molecules">
+<h2>Most Similars n Molecules<a class="headerlink" href="#most-similars-n-molecules" title="Permalink to this headline">¶</a></h2>
+<p>The search_most_similars method will output the n
+molecules from your database most similar to your
+query molecule</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analogs_finder.search_methods</span> <span class="k">import</span> <span class="n">methods</span> <span class="k">as</span> <span class="n">mt</span>
+<span class="kn">from</span> <span class="nn">analogs_finder.helpers</span> <span class="k">import</span> <span class="n">helpers</span> <span class="k">as</span> <span class="n">hp</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;most_similars.sdf&quot;</span>
+<span class="n">n_structs</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">similars</span>  <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">n_structs</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tanimoto-similarity-search">
+<h2>Tanimoto Similarity Search<a class="headerlink" href="#tanimoto-similarity-search" title="Permalink to this headline">¶</a></h2>
+<p>The search_similarity_tresh method will output
+all molecules that have a tanimoto similarity higher
+than a desired treshold</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">treshold</span> <span class="o">=</span> <span class="mf">0.6</span>
+
+<span class="n">similars</span>  <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_similarity_tresh</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">treshold</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="substructure-search">
+<h2>Substructure Search<a class="headerlink" href="#substructure-search" title="Permalink to this headline">¶</a></h2>
+<p>The search_substructure will output molecules
+with at least one of the substructures on you query sdf file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">substructures</span> <span class="o">=</span> <span class="s2">&quot;analogs_finder/examples/substructre_2.sdf&quot;</span>
+
+<span class="n">molecule_query</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">substructures</span><span class="p">)</span>
+<span class="n">similars</span>  <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_substructure</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combinatorial-substructure-search">
+<h2>Combinatorial Substructure Search<a class="headerlink" href="#combinatorial-substructure-search" title="Permalink to this headline">¶</a></h2>
+<p>The combi_substructure_search will output all molecules
+with at least one substructures of each of the inputted
+substructures sdf files</p>
+<p>For example: I could look for structures with a 6 and 5 memeber ring,
+so I will pass this two substructures in a sdf so at least one of them
+have to be in the outputted molecules. But, at the same time I also want to
+have an amide so I will pass another sdf file with  the amide substructure.
+Finally, I will obtain structures with an amide and either a 5 or 6 memebr ring</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">substructures_sdf</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;analogs_finder/examples/subs*.sdf&quot;</span><span class="p">)</span>
+
+<span class="n">similars</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">combi_substructure_search</span><span class="p">(</span><span class="n">substructures_sdf</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="similarity-and-substructure-hybrid-search">
+<h2>Similarity and Substructure hybrid search<a class="headerlink" href="#similarity-and-substructure-hybrid-search" title="Permalink to this headline">¶</a></h2>
+<p>The most_similar_with_substructure method will output
+molecules with a tanimoto similarity coefficient higher
+than certain treshold that also contain certain substructure</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">substructure_file</span> <span class="o">=</span> <span class="s2">&quot;analogs_finder/examples/substructre_3.sdf&quot;</span>
+
+<span class="n">similars</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">most_similar_with_substructure</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">substructure_file</span><span class="p">,</span> <span class="n">treshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-different-fingerprints">
+<h2>Use different fingerprints<a class="headerlink" href="#use-different-fingerprints" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">molecule_query</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="s2">&quot;examples/query_molecule.sdf&quot;</span><span class="p">))</span>
+<span class="n">substructure_file</span> <span class="o">=</span> <span class="s2">&quot;examples/substructure.sdf&quot;</span>
+
+<span class="n">similars_daylight</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fp_type</span><span class="o">=</span><span class="s2">&quot;DL&quot;</span><span class="p">)</span>
+<span class="n">similars_circular</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fp_type</span><span class="o">=</span><span class="s2">&quot;circular&quot;</span><span class="p">)</span>
+<span class="n">similars_torsions</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fp_type</span><span class="o">=</span><span class="s2">&quot;torsions&quot;</span><span class="p">)</span>
+<span class="n">similars_MACCS</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fp_type</span><span class="o">=</span><span class="s2">&quot;MACCS&quot;</span><span class="p">)</span>
+<span class="n">similars_pharm</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fp_type</span><span class="o">=</span><span class="s2">&quot;pharm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-all-four-fingerprints-to-query-one-database-with-different-tresholds">
+<h2>Use all four fingerprints to query one database with different tresholds<a class="headerlink" href="#use-all-four-fingerprints-to-query-one-database-with-different-tresholds" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tresholds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]</span>
+<span class="n">fp_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DL&quot;</span><span class="p">,</span> <span class="s2">&quot;circular&quot;</span><span class="p">,</span> <span class="s2">&quot;torsions&quot;</span><span class="p">,</span> <span class="s2">&quot;MACCS&quot;</span><span class="p">]</span>
+<span class="n">similarts</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_similarity_tresh_several_fp</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">tresholds</span><span class="o">=</span><span class="n">tresholds</span><span class="p">,</span> <span class="n">fp_types</span><span class="o">=</span><span class="n">fp_types</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="turbo-search-method">
+<h2>Turbo search method:<a class="headerlink" href="#turbo-search-method" title="Permalink to this headline">¶</a></h2>
+<p>Instead of just querying the reference molecule and setting a tanimoto treshold,
+we first look for the N most similar neighbours and we run similarity search with
+the reference molecule and theses neghbours, finally performing data fusion.</p>
+<p>For more details: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/sam.10037">https://onlinelibrary.wiley.com/doi/abs/10.1002/sam.10037</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">analogs_finder.search_methods.fusion</span> <span class="k">as</span> <span class="nn">fs</span>
+<span class="n">turbo_similars</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">turbo_similarity</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">neighbours</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">treshold</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">fp_type</span><span class="o">=</span><span class="s2">&quot;circular&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../command_line_tutorial/index.html" class="btn btn-neutral float-right" title="From Command Line" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Daniel Soler Viladrich
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

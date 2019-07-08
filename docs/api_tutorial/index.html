@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>From python API &mdash; analogs finder 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> analogs finder
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../command_line_tutorial/index.html">From Command Line</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">ChangeLog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">analogs finder</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>From python API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api_tutorial/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="from-python-api">
+<h1>From python API<a class="headerlink" href="#from-python-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-your-query-molecule-and-your-database">
+<h2>Load your query molecule and your database<a class="headerlink" href="#load-your-query-molecule-and-your-database" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rdkit</span> <span class="k">import</span> <span class="n">Chem</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;examples/database.sdf&quot;</span>
+<span class="n">qmolecule</span> <span class="o">=</span> <span class="s2">&quot;examples/substructure_1.sdf&quot;</span>
+
+<span class="n">molecules_db</span><span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="n">molecule_query</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">qmolecule</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="most-similars-n-molecules">
+<h2>Most Similars n Molecules<a class="headerlink" href="#most-similars-n-molecules" title="Permalink to this headline">¶</a></h2>
+<p>The search_most_similars method will output the n
+molecules from your database most similar to your
+query molecule</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analogs_finder.search_methods</span> <span class="k">import</span> <span class="n">methods</span> <span class="k">as</span> <span class="n">mt</span>
+<span class="kn">from</span> <span class="nn">analogs_finder.helpers</span> <span class="k">import</span> <span class="n">helpers</span> <span class="k">as</span> <span class="n">hp</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;most_similars.sdf&quot;</span>
+<span class="n">n_structs</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">similars</span>  <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_most_similars</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">n_structs</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tanimoto-similarity-search">
+<h2>Tanimoto Similarity Search<a class="headerlink" href="#tanimoto-similarity-search" title="Permalink to this headline">¶</a></h2>
+<p>The search_similarity_tresh method will output
+all molecules that have a tanimoto similarity higher
+than a desired treshold</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">treshold</span> <span class="o">=</span> <span class="mf">0.6</span>
+
+<span class="n">similars</span>  <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_similarity_tresh</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">treshold</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="substructure-search">
+<h2>Substructure Search<a class="headerlink" href="#substructure-search" title="Permalink to this headline">¶</a></h2>
+<p>The search_substructure will output molecules
+with at least one of the substructures on you query sdf file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">substructures</span> <span class="o">=</span> <span class="s2">&quot;example/substructure2.sdf&quot;</span>
+
+<span class="n">molecule_query</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">substructures</span><span class="p">)</span>
+<span class="n">similars</span>  <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">search_substructure</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combinatorial-substructure-search">
+<h2>Combinatorial Substructure Search<a class="headerlink" href="#combinatorial-substructure-search" title="Permalink to this headline">¶</a></h2>
+<p>The combi_substructure_search will output all molecules
+with at least one substructures of each of the inputted
+substructures sdf files</p>
+<p>For example: I could look for structures with a 6 and 5 memeber ring,
+so I will pass this two substructures in a sdf so at least one of them
+have to be in the outputted molecules. But, at the same time I also want to
+have an amide so I will pass another sdf file with  the amide substructure.
+Finally, I will obtain structures with an amide and either a 5 or 6 memebr ring</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">substructures_sdf</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;examples/subs*.sdf&quot;</span><span class="p">)</span>
+
+<span class="n">similars</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">combi_substructure_search</span><span class="p">(</span><span class="n">substructures_sdf</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="similarity-and-substructure-hybrid-search">
+<h2>Similarity and Substructure hybrid search<a class="headerlink" href="#similarity-and-substructure-hybrid-search" title="Permalink to this headline">¶</a></h2>
+<p>The most_similar_with_substructure method will output
+molecules with a tanimoto similarity coefficient higher
+than certain treshold that also contain certain substructure</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">molecule_query</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="s2">&quot;examples/query_molecule.sdf&quot;</span><span class="p">))</span>
+<span class="n">substructure_file</span> <span class="o">=</span> <span class="s2">&quot;examples/substructure.sdf&quot;</span>
+
+<span class="n">similars</span> <span class="o">=</span> <span class="n">most_similar_with_substructure</span><span class="p">(</span><span class="n">molecule_query</span><span class="p">,</span> <span class="n">molecules_db</span><span class="p">,</span> <span class="n">substructure_file</span><span class="p">,</span> <span class="n">treshold</span><span class="p">)</span>
+<span class="n">similars_no_duplicates</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">similars</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDWriter</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">similars_no_duplicates</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Daniel Soler Viladrich
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
